@@ -35,7 +35,7 @@ func main() {
 	fmt.Println("Answer 1:")
 	fmt.Println(len(uniqueContains(bagMap, "shiny gold")))
 	fmt.Println("Answer 2:")
-	fmt.Println(uniqueContained(bagMap, "shiny gold"))
+	fmt.Println(totalContained(bagMap, "shiny gold"))
 }
 
 func uniqueContains(bagMap map[string]map[string]int, color string) map[string]bool {
@@ -53,11 +53,11 @@ func uniqueContains(bagMap map[string]map[string]int, color string) map[string]b
 	return contains
 }
 
-func uniqueContained(bagMap map[string]map[string]int, color string) int {
+func totalContained(bagMap map[string]map[string]int, color string) int {
 	contained := bagMap[color]
 	total := 0
 	for color, count := range contained {
-		total = total + count * (1 + uniqueContained(bagMap, color))
+		total = total + count * (1 + totalContained(bagMap, color))
 	}
 	return total
 }
